@@ -1,14 +1,11 @@
 import express from 'express'
-import { register, login, logout } from '../src/account'
-
+import account from './account'
+import recipe from './recipe'
 const router = express.Router()
 
-router.get('/', (req, res) => { res.send('hello ouss') })
+router.get('/', (req, res) => { res.render('chat', { message: 'hello ouss' }) })
 
-router.post('/register', register)
-
-router.post('/login', login)
-
-router.post('/logout', logout)
+router.use('/account', account)
+router.use('/recipe', recipe)
 
 export default router

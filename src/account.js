@@ -22,6 +22,7 @@ export function authenticate (passport) {
             if (res) {
               delete user.password
               delete user.enabled
+              req.session.user = user
               return done(null, user)
             } else if (err || !res) {
               return done(null, false, { error: 'email and password do not match' })

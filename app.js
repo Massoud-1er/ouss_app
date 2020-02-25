@@ -16,8 +16,7 @@ import helmet from 'helmet'
 import mongoose from 'mongoose'
 import passport from 'passport'
 import { authenticate } from './src/account'
-
-// import ws from 'ws'
+import ws from 'ws'
 
 authenticate(passport)
 
@@ -109,10 +108,10 @@ const server = http.createServer(app)
 server.listen(app.get('port'), function () {
   console.log('Express server listening on port ' + app.get('port'))
 })
-// const wss = new ws.Server({ server: server })
+const wss = new ws.Server({ server: server })
 
-// global.wss = wss
+global.wss = wss
 
-// require('./src/back/socket')
+require('./src/socket')
 
 module.exports.app = app
